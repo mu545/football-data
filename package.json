@@ -1,0 +1,39 @@
+{
+  "name": "football-data",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-validator": "^6.2.0",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  },
+  "description": "Express api gateway to access football data",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mu545/football-data.git"
+  },
+  "keywords": [
+    "gateway",
+    "rest",
+    "api",
+    "express",
+    "football"
+  ],
+  "author": "Musa Sutisna <mus4.sutisn4@gmail.com> (https://github.com/mu545)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mu545/football-data/issues"
+  },
+  "homepage": "https://github.com/mu545/football-data#readme"
+}
