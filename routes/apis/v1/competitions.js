@@ -68,3 +68,24 @@ module.exports.getList = [
     })
   }
 ]
+
+function getLeagueInput(req, res, next) {
+  res.locals.input = {
+    '/competitions': `/${req.params.league}`
+  }
+
+  next()
+}
+
+module.exports.getLeague = [
+  param('league')
+    .isNumeric().withMessage('league id not valid'),
+  validationInput,
+  getLeagueInput,
+  grabCompetitions,
+  function (req, res) {
+    res.json({
+      competition: res.locals.competitions
+    })
+  }
+]
