@@ -6,4 +6,7 @@ module.exports = function (router) {
 
   router.route('/api/v1/league/:league')
     .get(competitions.getLeague)
+
+  router.route('/api/v1/matches/:league/:year')
+    .get(competitions.getMatches)
 }

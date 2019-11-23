@@ -89,3 +89,27 @@ module.exports.getLeague = [
     })
   }
 ]
+
+function getMatchesInput(req, res, next) {
+  res.locals.input = {
+    '/competitions': `/${req.params.league}`,
+    '/matches': `?season=${req.params.year}`
+  }
+
+  next()
+}
+
+module.exports.getMatches = [
+  param('league')
+    .isNumeric().withMessage('league id not valid'),
+  param('year')
+    .isNumeric().withMessage('year not valid'),
+  validationInput,
+  getMatchesInput,
+  grabCompetitions,
+  function (req, res) {
+    res.json({
+      competition: res.locals.competitions
+    })
+  }
+]
