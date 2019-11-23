@@ -137,3 +137,25 @@ module.exports.getTeams = [
     })
   }
 ]
+
+function getStandingsInput(req, res, next) {
+  res.locals.input = {
+    '/competitions': `/${req.params.league}`,
+    '/standings': ''
+  }
+
+  next()
+}
+
+module.exports.getStandings = [
+  param('league')
+    .isNumeric().withMessage('league id not valid'),
+  validationInput,
+  getStandingsInput,
+  grabCompetitions,
+  function (req, res) {
+    res.json({
+      competition: res.locals.competitions
+    })
+  }
+]
