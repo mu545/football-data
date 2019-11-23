@@ -9,4 +9,7 @@ module.exports = function (router) {
 
   router.route('/api/v1/matches/:league/:year')
     .get(competitions.getMatches)
+
+  router.route('/api/v1/teams/:league/:year')
+    .get(competitions.getTeams)
 }
