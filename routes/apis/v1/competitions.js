@@ -223,3 +223,24 @@ module.exports.getScorers = [
     })
   }
 ]
+
+function getPlayerInput(req, res, next) {
+  res.locals.input = {
+    '/players': `/${req.params.player}`
+  }
+
+  next()
+}
+
+module.exports.getPlayer = [
+  param('player')
+    .isNumeric().withMessage('player id not valid'),
+  validationInput,
+  getPlayerInput,
+  grabCompetitions,
+  function (req, res) {
+    res.json({
+      player: res.locals.competitions
+    })
+  }
+]
