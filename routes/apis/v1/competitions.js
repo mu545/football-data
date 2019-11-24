@@ -159,6 +159,27 @@ module.exports.getTeams = [
   }
 ]
 
+function getTeamInput(req, res, next) {
+  res.locals.input = {
+    '/teams': `/${req.params.team}`
+  }
+
+  next()
+}
+
+module.exports.getTeam = [
+  param('team')
+    .isNumeric().withMessage('team id not valid'),
+  validationInput,
+  getTeamInput,
+  grabCompetitions,
+  function (req, res) {
+    res.json({
+      team: res.locals.competitions
+    })
+  }
+]
+
 function getStandingsInput(req, res, next) {
   res.locals.input = {
     '/competitions': `/${req.params.league}`,
