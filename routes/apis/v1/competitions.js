@@ -114,6 +114,27 @@ module.exports.getMatches = [
   }
 ]
 
+function getMatchInput(req, res, next) {
+  res.locals.input = {
+    '/matches': `/${req.params.match}`
+  }
+
+  next()
+}
+
+module.exports.getMatch = [
+  param('match')
+    .isNumeric().withMessage('match id not valid'),
+  validationInput,
+  getMatchInput,
+  grabCompetitions,
+  function (req, res) {
+    res.json({
+      match: res.locals.competitions.match
+    })
+  }
+]
+
 function getTeamsInput(req, res, next) {
   res.locals.input = {
     '/competitions': `/${req.params.league}`,
@@ -172,8 +193,8 @@ function getScorersInput(req, res, next) {
 module.exports.getScorers = [
   param('league')
     .isNumeric().withMessage('league id not valid'),
-  getScorersInput,
   validationInput,
+  getScorersInput,
   grabCompetitions,
   function (req, res) {
     res.json({
