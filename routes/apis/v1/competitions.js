@@ -11,7 +11,7 @@ function validationInput(req, res, next) {
   }
 }
 
-function grabCompetitions(req, res, next) {
+function grabData(req, res, next) {
   let filters = ''
 
   for (var filter in res.locals.input) {
@@ -36,10 +36,10 @@ function grabCompetitions(req, res, next) {
     })
 
     getCompetitions.on('end', function () {
-      res.locals.competitions = JSON.parse(Buffer.concat(chunks))
+      res.locals.data = JSON.parse(Buffer.concat(chunks))
 
-      if (typeof res.locals.competitions.error !== 'undefined') {
-        res.status(400).json({ err: res.locals.competitions.error })
+      if (typeof res.locals.data.error !== 'undefined') {
+        res.status(400).json({ err: res.locals.data.error })
       } else {
         next()
       }
@@ -61,10 +61,10 @@ function getListInput(req, res, next) {
 
 module.exports.getList = [
   getListInput,
-  grabCompetitions,
+  grabData,
   function (req, res) {
     res.json({
-      competitions: res.locals.competitions.competitions
+      competitions: res.locals.data.competitions
     })
   }
 ]
@@ -82,10 +82,10 @@ module.exports.getLeague = [
     .isNumeric().withMessage('league id not valid'),
   validationInput,
   getLeagueInput,
-  grabCompetitions,
+  grabData,
   function (req, res) {
     res.json({
-      league: res.locals.competitions
+      league: res.locals.data
     })
   }
 ]
@@ -106,10 +106,10 @@ module.exports.getMatches = [
     .isNumeric().withMessage('year not valid'),
   validationInput,
   getMatchesInput,
-  grabCompetitions,
+  grabData,
   function (req, res) {
     res.json({
-      matches: res.locals.competitions.matches
+      matches: res.locals.data.matches
     })
   }
 ]
@@ -127,10 +127,10 @@ module.exports.getMatch = [
     .isNumeric().withMessage('match id not valid'),
   validationInput,
   getMatchInput,
-  grabCompetitions,
+  grabData,
   function (req, res) {
     res.json({
-      match: res.locals.competitions.match
+      match: res.locals.data.match
     })
   }
 ]
@@ -151,10 +151,10 @@ module.exports.getTeams = [
     .isNumeric().withMessage('year not valid'),
   validationInput,
   getTeamsInput,
-  grabCompetitions,
+  grabData,
   function (req, res) {
     res.json({
-      teams: res.locals.competitions.teams
+      teams: res.locals.data.teams
     })
   }
 ]
@@ -172,10 +172,10 @@ module.exports.getTeam = [
     .isNumeric().withMessage('team id not valid'),
   validationInput,
   getTeamInput,
-  grabCompetitions,
+  grabData,
   function (req, res) {
     res.json({
-      team: res.locals.competitions
+      team: res.locals.data
     })
   }
 ]
@@ -194,10 +194,10 @@ module.exports.getStandings = [
     .isNumeric().withMessage('league id not valid'),
   validationInput,
   getStandingsInput,
-  grabCompetitions,
+  grabData,
   function (req, res) {
     res.json({
-      standings: res.locals.competitions.standings
+      standings: res.locals.data.standings
     })
   }
 ]
@@ -216,10 +216,10 @@ module.exports.getScorers = [
     .isNumeric().withMessage('league id not valid'),
   validationInput,
   getScorersInput,
-  grabCompetitions,
+  grabData,
   function (req, res) {
     res.json({
-      scorers: res.locals.competitions.scorers
+      scorers: res.locals.data.scorers
     })
   }
 ]
@@ -237,10 +237,10 @@ module.exports.getPlayer = [
     .isNumeric().withMessage('player id not valid'),
   validationInput,
   getPlayerInput,
-  grabCompetitions,
+  grabData,
   function (req, res) {
     res.json({
-      player: res.locals.competitions
+      player: res.locals.data
     })
   }
 ]
