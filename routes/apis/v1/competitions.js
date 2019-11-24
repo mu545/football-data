@@ -64,7 +64,7 @@ module.exports.getList = [
   grabCompetitions,
   function (req, res) {
     res.json({
-      competitions: res.locals.competitions
+      competitions: res.locals.competitions.competitions
     })
   }
 ]
@@ -85,7 +85,7 @@ module.exports.getLeague = [
   grabCompetitions,
   function (req, res) {
     res.json({
-      competition: res.locals.competitions
+      league: res.locals.competitions
     })
   }
 ]
@@ -109,7 +109,7 @@ module.exports.getMatches = [
   grabCompetitions,
   function (req, res) {
     res.json({
-      competition: res.locals.competitions
+      matches: res.locals.competitions.matches
     })
   }
 ]
@@ -133,7 +133,7 @@ module.exports.getTeams = [
   grabCompetitions,
   function (req, res) {
     res.json({
-      competition: res.locals.competitions
+      teams: res.locals.competitions.teams
     })
   }
 ]
@@ -155,7 +155,7 @@ module.exports.getStandings = [
   grabCompetitions,
   function (req, res) {
     res.json({
-      competition: res.locals.competitions
+      standings: res.locals.competitions.standings
     })
   }
 ]
