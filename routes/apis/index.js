@@ -15,4 +15,7 @@ module.exports = function (router) {
 
   router.route('/api/v1/standings/:league')
     .get(competitions.getStandings)
+
+  router.route('/api/v1/scorers/:league')
+    .get(competitions.getScorers)
 }
